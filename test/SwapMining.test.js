@@ -2,18 +2,14 @@ const { expectRevert, time } = require('@openzeppelin/test-helpers');
 const { assert } = require('chai');
 const JSBI = require('jsbi')
 const ethers = require('ethers')
-
 const WBNB = artifacts.require('WBNB');
 const BSWToken = artifacts.require('BSWToken');
 const MockBEP20 = artifacts.require('libs/MockBEP20');
-
 const SwapFeeReward = artifacts.require('SwapFeeReward');
 const BiswapFactory = artifacts.require('BiswapFactory');
 const BiswapRouter02 = artifacts.require('BiswapRouter02');
 const BiswapPair = artifacts.require('BiswapPair');
-
 const Oracle = artifacts.require('Oracle');
-
 const perBlock = '100';
 const startBlock = '100';
 function normalDecimal(a){
@@ -150,11 +146,9 @@ contract('MasterChef', ([alice, bob, carol, dev, refFeeAddr, feeAddr, minter]) =
             this.deadline(),
             { from: alice }
         )
-
         let tokeALp1AfterLiquid = await this.tokenA.balanceOf(pair1);
         let tokeBLp1AfterLiquid = await this.tokenB.balanceOf(pair1);
         let aliceTokenBAfterLiquid = await this.tokenB.balanceOf(alice);
-
         console.log('alice tokenB balance: ', aliceTokenBAfterSwap.sub(aliceTokenBAfterLiquid).toString())
         console.log('balance tokenA in pair: ', tokeALp1AfterLiquid.sub(tokeALp1AfterSwap).toString());
         console.log('balance tokenB in pair: ', tokeBLp1AfterSwap.sub(tokeBLp1AfterLiquid).toString());
