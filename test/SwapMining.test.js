@@ -153,16 +153,11 @@ contract('MasterChef', ([alice, bob, carol, dev, refFeeAddr, feeAddr, minter]) =
         console.log('balance tokenA in pair: ', tokeALp1AfterLiquid.sub(tokeALp1AfterSwap).toString());
         console.log('balance tokenB in pair: ', tokeBLp1AfterSwap.sub(tokeBLp1AfterLiquid).toString());
         console.log('----');
-
         console.log('balance: ', normalDecimal( (await this.SwapFeeReward.rewardBalance({ from: alice })).toString()));
-
         await this.SwapFeeReward.withdraw({ from: alice });
-
-
         console.log('balance reward: ', (await this.SwapFeeReward.rewardBalance({ from: alice })).toString());
         console.log('balance bsw: ', (await this.bsw.balanceOf(alice, { from: alice })).toString());
         console.log('total bsw: ', (await this.bsw.totalSupply({ from: alice })).toString());
-
     });
     it('real case', async () => {
     
