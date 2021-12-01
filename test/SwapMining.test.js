@@ -26,11 +26,9 @@ contract('MasterChef', ([alice, bob, carol, dev, refFeeAddr, feeAddr, minter]) =
         }
         this.sleep = function(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
-        };
-        
+        };        
         this.bsw = await BSWToken.new({ from: minter });
         this.wbnb = await WBNB.new({ from: minter });
-
         // this.usdt = await MockBEP20.new('USDT', 'USTD', '1000000', { from: minter });
         this.tokenA = await MockBEP20.new('Token A', 'TKA', JSBI.BigInt(toDecimal('1000000000000000')).toString(), { from: minter });
         this.tokenB = await MockBEP20.new('Token B', 'TKB', JSBI.BigInt(toDecimal('1000000000000000')).toString(), { from: minter });
@@ -40,11 +38,8 @@ contract('MasterChef', ([alice, bob, carol, dev, refFeeAddr, feeAddr, minter]) =
         let INIT_CODE_HASH = await this.factory.INIT_CODE_HASH();
         await this.factory.setFeeTo(feeAddr, { from: minter });
         console.log(await this.factory.feeTo());
-        this.router = await BiswapRouter02.new(this.factory.address, this.wbnb.address, { from: minter });
-        
-
+        this.router = await BiswapRouter02.new(this.factory.address, this.wbnb.address, { from: minter });       
         this.oracle = await Oracle.new(this.factory.address, INIT_CODE_HASH, { from: minter });
-
         this.SwapFeeReward = await SwapFeeReward.new(
             this.factory.address,
             this.router.address,
@@ -57,7 +52,6 @@ contract('MasterChef', ([alice, bob, carol, dev, refFeeAddr, feeAddr, minter]) =
         await this.SwapFeeReward.addWhitelist(this.tokenA.address);
         await this.SwapFeeReward.addWhitelist(this.tokenB.address);
         await this.SwapFeeReward.addWhitelist(this.tokenC.address);
-
         await this.bsw.addMinter(this.SwapFeeReward.address, { from: minter });
 
         await this.tokenA.transfer(alice, JSBI.BigInt(toDecimal('1000000000000000')).toString(10), { from: minter });
