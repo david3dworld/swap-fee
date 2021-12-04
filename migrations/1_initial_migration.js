@@ -1,14 +1,10 @@
 const SwapFeeReward = artifacts.require("SwapFeeReward");
 const Oracle = artifacts.require("Oracle");
 
-module.exports = async function (deployer) {
-
-  
+module.exports = async function (deployer) { 
   await deployer.deploy(Oracle, "0x4e138eC1E171D9FB0d9D700F717996d0de9492af", "0xfccd8edabb6ca6652a1af8bd3b26a22704650ba24bc27b11a514bc00c836853b");
   let instanceOracle = await Oracle.deployed();
   console.log(instanceOracle.address);
-
-
   await deployer.deploy(
     SwapFeeReward,
       "0x4e138eC1E171D9FB0d9D700F717996d0de9492af",
@@ -19,9 +15,6 @@ module.exports = async function (deployer) {
       "0x8eBbD8eA391f74032391e2970BCE1351C16b6801"
     );
   let instanceSwapFeeReward = await SwapFeeReward.deployed();
-
-
-
   // "0x4e138eC1E171D9FB0d9D700F717996d0de9492af",
   //   "0xfccd8edabb6ca6652a1af8bd3b26a22704650ba24bc27b11a514bc00c836853b"
   // let instanceOracle = deployer.deploy(
@@ -34,4 +27,3 @@ module.exports = async function (deployer) {
   //       address _targetToken
   // );
 };
-//
