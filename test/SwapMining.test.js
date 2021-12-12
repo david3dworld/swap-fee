@@ -65,15 +65,15 @@ contract('MasterChef', ([alice, bob, carol, dev, refFeeAddr, feeAddr, minter]) =
         let amountLiqudityA = "284495381003432731316116";
         let amountLiqudityB = "15087710864450785846274";
         await this.router.addLiquidity(
-            this.tokenA.address,
-            this.tokenB.address,
-            amountLiqudityA,
-            amountLiqudityB,
-            amountLiqudityA,
-            amountLiqudityB,
-            alice,
-            this.deadline(),
-            { from: alice }
+                this.tokenA.address,
+                this.tokenB.address,
+                amountLiqudityA,
+                amountLiqudityB,
+                amountLiqudityA,
+                amountLiqudityB,
+                alice,
+                this.deadline(),
+                { from: alice }
         );
         amountLiqudityB = '141687832029454432573396';
         let amountLiqudityC = '85831437153686977543215154';
@@ -105,7 +105,6 @@ contract('MasterChef', ([alice, bob, carol, dev, refFeeAddr, feeAddr, minter]) =
         
         await this.oracle.update(this.tokenA.address, this.tokenB.address);
         await this.oracle.update(this.tokenB.address, this.tokenC.address);
-
         await time.advanceBlockTo('1100');
 
         let amountToSwap = 100;
